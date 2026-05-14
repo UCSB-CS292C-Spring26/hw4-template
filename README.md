@@ -1,19 +1,21 @@
-# HW4: Final Research Project -- Agentic Skill Composition Analyzer
+# HW4: Final Research Project — Securing Multi-Agent Systems
 
-**CS 292C -- Spring 2026**
-**Due: June 6, 2026 (Friday of Finals Week), 11:59 PM**
+**CS 292C — Spring 2026**
+**Due: June 4, 2026 (Lecture 20), 11:59 PM**
+**Presentations: June 4, in class (20 min each)**
 
 ## Overview
 
-Modern AI agents compose *skills* -- small, natural-language tool descriptions --
-to accomplish complex tasks. Each skill may look safe in isolation, but when
-composed together they can introduce **cross-skill vulnerabilities**: sensitive
-data leaking between skills, credentials shared without least-privilege, or
-untrusted input flowing into privileged operations.
+Modern AI systems compose multiple agents and skills into **harnesses** —
+multi-step workflows where agents coordinate through shared context, tool
+calls, and data handoffs. Each agent or skill may be safe in isolation, but
+when composed into a harness they can introduce **cross-boundary
+vulnerabilities**: sensitive data leaking between agents, credentials shared
+without least-privilege, untrusted input flowing into privileged operations,
+or emergent capabilities that no single agent possesses alone.
 
-Your task is to build a **static analyzer** that takes a directory of skill
-files (Markdown descriptions of agent tools) and reports potential security
-findings as a **standardized JSON array**.
+Your task is to build a tool that analyzes multi-agent harnesses and reports
+potential security findings as a **standardized JSON array**.
 
 There is no written report. Your code *is* the deliverable.
 
@@ -97,12 +99,32 @@ started -- pick one, combine several, or invent your own:
    in composition and flag emergent capabilities that only arise from
    composition.
 
-## Benchmarks
+## Real-World Multi-Agent Systems & Harnesses
+
+You are encouraged to test your tool on real-world multi-agent configurations
+beyond the provided benchmarks. Here are pointers to well-known systems:
+
+| Resource | What It Contains | How to Use |
+|----------|-----------------|------------|
+| [CrewAI Examples](https://github.com/crewAIInc/crewAI-examples) | ~20 multi-agent workflows (marketing, recruitment, stock analysis) with YAML agent/task definitions | Extract agent roles, tools, and data flows from YAML configs |
+| [OpenAI Swarm](https://github.com/openai/swarm) | Lightweight agent handoff framework with examples (airline support, triage) | Analyze handoff logic and shared state between agents |
+| [LangGraph Examples](https://github.com/langchain-ai/langgraph/tree/main/examples) | State-graph multi-agent workflows (plan-and-execute, reflexion, collaboration) | State machines map directly to transition systems from Lecture 10 |
+| [Microsoft AutoGen](https://github.com/microsoft/autogen) | Multi-agent conversations with tool use (math expert, code executor) | Analyze trust boundaries between agents with different capabilities |
+| [Claude Code Plugins](https://github.com/anthropics/claude-code/tree/main/plugins) | Plugin system extending Claude Code with custom agents | Real harness definitions with permission models |
+| CLAUDE.md files on GitHub | `gh search code "filename:CLAUDE.md" --limit 50` | Real harness configurations defining agent behavior and guardrails |
+| [ClawHub](https://clawhub.com) | 13,700+ published agent skills | Source of individual skills to compose into harnesses |
+| Course zeroday corpus | 17 vulnerable skills with ground truth (provided in class) | Known-bad skills for testing detection capabilities |
+
+These are optional — you can earn full marks using only the provided benchmarks.
+But testing on real systems will strengthen your presentation and demonstrate
+that your approach generalizes.
+
+## Provided Benchmarks
 
 The `benchmarks/` directory contains eight harnesses. Each is a directory of
 2–3 skill files that form a multi-agent pipeline. Every harness has at least
-one cross-skill vulnerability — a security issue that only emerges from the
-composition, not from any individual skill in isolation.
+one cross-boundary vulnerability — a security issue that only emerges from the
+composition, not from any individual agent or skill in isolation.
 
 | Harness | Skills | Domain |
 |---------|--------|--------|
