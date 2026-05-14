@@ -143,14 +143,27 @@ hw4-template/
 
 ## Grading Rubric
 
+### Code (60%)
+
 | Component | Points | Criteria |
 |-----------|--------|----------|
-| **Benchmark Detection** | 40 | At least one cross-skill finding per harness (3 harnesses). Quality and precision of findings. |
-| **Analysis Approach** | 30 | Novelty and soundness of your technique. Does it generalize beyond the provided benchmarks? |
-| **Code Quality** | 15 | Clean, readable, well-structured code. |
-| **JSON Compliance** | 15 | Output passes `validate.py` on all harnesses. Correct schema, unique IDs, valid severities. |
+| **Benchmark Detection** | 25 | At least one cross-skill finding per harness (8 provided + hidden). Quality and precision of findings. |
+| **Analysis Approach** | 15 | Novelty and soundness of your technique. Does it generalize beyond the provided benchmarks? |
+| **Code Quality** | 10 | Clean, readable, well-structured code with clear README. |
+| **JSON Compliance** | 10 | Output passes `validate.py` on all harnesses. Correct schema, unique IDs, valid severities. |
 
-**Total: 100 points**
+### Presentation (40%)
+
+20-minute presentation on June 4 (Lecture 20): 12 min talk + 3 min demo + 5 min Q&A.
+
+| Component | Points | Criteria |
+|-----------|--------|----------|
+| **Problem & Motivation** | 8 | Clear problem statement. Why does cross-skill composition create vulnerabilities that single-skill analysis misses? |
+| **Technical Approach** | 12 | What technique(s) did you use? How does it connect to formal methods from the course (Hoare logic, SMT, static analysis, trace verification)? |
+| **Live Demo** | 12 | Run your tool on a benchmark (provided or external). Walk through the output. Show a real cross-skill finding. |
+| **Q&A** | 8 | Demonstrate understanding. Can you explain your detection rules? Can you discuss false positives/negatives? |
+
+**Total: 100 points (60 code + 40 presentation)**
 
 ## Submission
 
