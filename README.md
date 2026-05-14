@@ -99,39 +99,46 @@ started -- pick one, combine several, or invent your own:
 
 ## Benchmarks
 
-The `benchmarks/` directory contains three harnesses, each with two or three
-skill files that form a pipeline:
+The `benchmarks/` directory contains eight harnesses. Each is a directory of
+2–3 skill files that form a multi-agent pipeline. Every harness has at least
+one cross-skill vulnerability — a security issue that only emerges from the
+composition, not from any individual skill in isolation.
 
-| Harness | Skills | Expected Findings |
-|---------|--------|-------------------|
-| `harness_read_and_post/` | `skill_reader.md`, `skill_poster.md` | Sensitive file content flows to external network via context variable |
-| `harness_code_review/` | `skill_fetcher.md`, `skill_linter.md`, `skill_reporter.md` | Token reuse across skills, unsanitized code in PR comment, arbitrary package install |
-| `harness_data_pipeline/` | `skill_ingest.md`, `skill_upload.md` | PII (name, email, salary) flows to external analytics API with no redaction or consent |
+| Harness | Skills | Domain |
+|---------|--------|--------|
+| `harness_read_and_post/` | 2 skills | File reading + notification |
+| `harness_code_review/` | 3 skills | Code fetch + lint + reporting |
+| `harness_data_pipeline/` | 2 skills | Data ingestion + cloud upload |
+| `harness_deploy_pipeline/` | 2 skills | Build + deployment |
+| `harness_research_assistant/` | 3 skills | Paper search + summarization + saving |
+| `harness_incident_response/` | 2 skills | System diagnostics + external analysis |
+| `harness_onboarding/` | 2 skills | Account provisioning + notification |
+| `harness_monitoring/` | 2 skills | Metric collection + alerting |
 
-Your analyzer should detect **at least one cross-skill finding per harness** to
-receive full credit on the benchmark portion. The more nuanced and accurate your
-findings, the higher your score.
+**You are not told what the vulnerabilities are.** Discovering them is part of
+the project. Your analyzer should find at least one cross-skill issue per
+harness.
+
+The autograder will also test on **additional hidden harnesses** not included
+here.
 
 ## Project Structure
 
 ```
 hw4-template/
-  README.md          # This file
-  run.py             # YOUR ENTRY POINT -- accepts a path, outputs JSON
+  README.md          # This file (update with your Problem/Approach/Evaluation)
+  run.py             # YOUR ENTRY POINT -- accepts a harness directory, outputs JSON
   validate.py        # Validates your JSON output format
   check.sh           # Submission validator script
-  .gitignore
-  benchmarks/
+  benchmarks/        # 8 multi-skill harnesses (2–3 skills each)
     harness_read_and_post/
-      skill_reader.md
-      skill_poster.md
     harness_code_review/
-      skill_fetcher.md
-      skill_linter.md
-      skill_reporter.md
     harness_data_pipeline/
-      skill_ingest.md
-      skill_upload.md
+    harness_deploy_pipeline/
+    harness_research_assistant/
+    harness_incident_response/
+    harness_onboarding/
+    harness_monitoring/
 ```
 
 ## Grading Rubric
